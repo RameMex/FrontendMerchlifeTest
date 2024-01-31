@@ -5,16 +5,11 @@ import { Suspense } from 'react';
 import { GridTileImage } from 'components/grid/tile';
 import { Gallery } from 'components/product/gallery';
 import { ProductDescription } from 'components/product/product-description';
-import { Image } from 'lib/shopify/types';
 import Link from 'next/link';
 
 export const runtime = 'edge';
 
-export async function generateMetadata({
-  params
-}: {
-  params: { handle: string };
-}): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   // const product = await getProduct(params.handle);
   const product = {
     featuredImage: {
@@ -55,7 +50,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({ params }: { params: { handle: string } }) {
+export default async function ProductPage() {
   // const product = await getProduct(params.handle);
   const product = {
     title: '6am',
@@ -141,7 +136,7 @@ export default async function ProductPage({ params }: { params: { handle: string
         <div className="flex flex-col rounded-lg border border-neutral-200 bg-white p-8 md:p-12 lg:flex-row lg:gap-8 dark:border-neutral-800 dark:bg-black">
           <div className="h-full w-full basis-full lg:basis-4/6">
             <Gallery
-              images={product.images.map((image: Image) => ({
+              images={product.images.map((image: any) => ({
                 src: image.url,
                 altText: image.altText
               }))}
@@ -153,14 +148,14 @@ export default async function ProductPage({ params }: { params: { handle: string
           </div>
         </div>
         <Suspense>
-          <RelatedProducts id={product.id} />
+          <RelatedProducts />
         </Suspense>
       </div>
     </>
   );
 }
 
-async function RelatedProducts({ id }: { id: string }) {
+async function RelatedProducts() {
   // const relatedProducts = await getProductRecommendations(id);
   const relatedProducts = [
     {
@@ -208,10 +203,10 @@ async function RelatedProducts({ id }: { id: string }) {
       <ul className="flex w-full gap-4 overflow-x-auto pt-1">
         {relatedProducts.map((product) => (
           <li
-            key={product.handle}
+            key="ok"
             className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
           >
-            <Link className="relative h-full w-full" href={`/product/${product.handle}`}>
+            <Link className="relative h-full w-full" href={`/product/ok`}>
               <GridTileImage
                 alt={product.title}
                 label={{
