@@ -3,11 +3,8 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { GridTileImage } from 'components/grid/tile';
-import Footer from 'components/layout/footer';
 import { Gallery } from 'components/product/gallery';
 import { ProductDescription } from 'components/product/product-description';
-import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
-import { getProduct, getProductRecommendations } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
 import Link from 'next/link';
 
@@ -18,24 +15,31 @@ export async function generateMetadata({
 }: {
   params: { handle: string };
 }): Promise<Metadata> {
-  const product = await getProduct(params.handle);
-
+  // const product = await getProduct(params.handle);
+  const product = {
+    featuredImage: {
+      url: 'https://politicozen-prod.s3.us-east-2.amazonaws.com/1701919734011-Thief%20Love%20T-shirt%20By%20Engin%20Selcuk-product-white',
+      height: '200',
+      width: '100',
+      altText: 'ook'
+    }
+  };
   if (!product) return notFound();
 
   const { url, width, height, altText: alt } = product.featuredImage || {};
-  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
+  // const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
 
   return {
-    title: product.seo.title || product.title,
-    description: product.seo.description || product.description,
-    robots: {
-      index: indexable,
-      follow: indexable,
-      googleBot: {
-        index: indexable,
-        follow: indexable
-      }
-    },
+    title: '6am',
+    description: 'Image',
+    // robots: {
+    //   index: indexable,
+    //   follow: indexable,
+    //   googleBot: {
+    //     index: indexable,
+    //     follow: indexable
+    //   }
+    // },
     openGraph: url
       ? {
           images: [
@@ -52,8 +56,60 @@ export async function generateMetadata({
 }
 
 export default async function ProductPage({ params }: { params: { handle: string } }) {
-  const product = await getProduct(params.handle);
-
+  // const product = await getProduct(params.handle);
+  const product = {
+    title: '6am',
+    handle: '6am',
+    id: '1',
+    options: [
+      {
+        id: '24242',
+        name: 'color',
+        values: ['black']
+      }
+    ],
+    variants: [
+      {
+        id: '122',
+        title: 'prueba',
+        availableForSale: true,
+        selectedOptions: [
+          {
+            name: 'ok',
+            value: 'ok'
+          }
+        ],
+        price: {
+          amount: '20',
+          currencyCode: 'USD'
+        }
+      }
+    ],
+    images: [
+      {
+        url: 'https://www.merchlife.co/product_two.jpg',
+        altText: 'ok'
+      }
+    ],
+    description: 'ok',
+    availableForSale: true,
+    priceRange: {
+      minVariantPrice: {
+        amount: '20',
+        currencyCode: 'USD'
+      },
+      maxVariantPrice: {
+        amount: '25',
+        currencyCode: 'USD'
+      }
+    },
+    featuredImage: {
+      url: 'https://www.merchlife.co/product_two.jpg',
+      height: '200',
+      width: '100',
+      altText: 'ook'
+    }
+  };
   if (!product) return notFound();
 
   const productJsonLd = {
@@ -82,7 +138,7 @@ export default async function ProductPage({ params }: { params: { handle: string
         }}
       />
       <div className="mx-auto max-w-screen-2xl px-4">
-        <div className="flex flex-col rounded-lg border border-neutral-200 bg-white p-8 dark:border-neutral-800 dark:bg-black md:p-12 lg:flex-row lg:gap-8">
+        <div className="flex flex-col rounded-lg border border-neutral-200 bg-white p-8 md:p-12 lg:flex-row lg:gap-8 dark:border-neutral-800 dark:bg-black">
           <div className="h-full w-full basis-full lg:basis-4/6">
             <Gallery
               images={product.images.map((image: Image) => ({
@@ -100,16 +156,50 @@ export default async function ProductPage({ params }: { params: { handle: string
           <RelatedProducts id={product.id} />
         </Suspense>
       </div>
-      <Suspense>
-        <Footer />
-      </Suspense>
     </>
   );
 }
 
 async function RelatedProducts({ id }: { id: string }) {
-  const relatedProducts = await getProductRecommendations(id);
-
+  // const relatedProducts = await getProductRecommendations(id);
+  const relatedProducts = [
+    {
+      featuredImage: {
+        url: 'https://www.merchlife.co/product_two.jpg'
+      },
+      title: 'Product 1',
+      priceRange: {
+        maxVariantPrice: {
+          amount: '20',
+          currencyCode: 'USD'
+        }
+      }
+    },
+    {
+      featuredImage: {
+        url: 'https://www.merchlife.co/product_two.jpg'
+      },
+      title: 'Product 1',
+      priceRange: {
+        maxVariantPrice: {
+          amount: '20',
+          currencyCode: 'USD'
+        }
+      }
+    },
+    {
+      featuredImage: {
+        url: 'https://www.merchlife.co/product_two.jpg'
+      },
+      title: 'Product 1',
+      priceRange: {
+        maxVariantPrice: {
+          amount: '20',
+          currencyCode: 'USD'
+        }
+      }
+    }
+  ];
   if (!relatedProducts.length) return null;
 
   return (

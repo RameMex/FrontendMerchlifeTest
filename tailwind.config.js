@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin');
+import { nextui } from '@nextui-org/react';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -49,6 +50,7 @@ module.exports = {
           values: theme('transitionDelay')
         }
       );
-    })
+    }),
+    nextui()
   ]
 };

@@ -1,11 +1,47 @@
-import { getCollectionProducts } from 'lib/shopify';
 import Link from 'next/link';
 import { GridTileImage } from './grid/tile';
 
 export async function Carousel() {
   // Collections that start with `hidden-*` are hidden from the search page.
-  const products = await getCollectionProducts({ collection: 'hidden-homepage-carousel' });
-
+  // const products = await getCollectionProducts({ collection: 'hidden-homepage-carousel' });
+  const products = [
+    {
+      featuredImage: {
+        url: 'https://www.merchlife.co/product_two.jpg'
+      },
+      title: 'Product 1',
+      priceRange: {
+        maxVariantPrice: {
+          amount: '20',
+          currencyCode: 'USD'
+        }
+      }
+    },
+    {
+      featuredImage: {
+        url: 'https://www.merchlife.co/product_two.jpg'
+      },
+      title: 'Product 1',
+      priceRange: {
+        maxVariantPrice: {
+          amount: '20',
+          currencyCode: 'USD'
+        }
+      }
+    },
+    {
+      featuredImage: {
+        url: 'https://www.merchlife.co/product_two.jpg'
+      },
+      title: 'Product 1',
+      priceRange: {
+        maxVariantPrice: {
+          amount: '20',
+          currencyCode: 'USD'
+        }
+      }
+    }
+  ];
   if (!products?.length) return null;
 
   // Purposefully duplicating products to make the carousel loop and not run out of products on wide screens.
