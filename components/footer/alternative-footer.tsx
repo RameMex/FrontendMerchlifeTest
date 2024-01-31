@@ -1,4 +1,9 @@
 // import { component$ } from '@builder.io/qwik';
+import { Facebook } from 'components/icons/facebook';
+import { Instagram } from 'components/icons/instagram';
+import { Tiktok } from 'components/icons/tiktok';
+import { Twitter } from 'components/icons/twitter';
+import Image from 'next/image';
 import styles from './footer.module.css';
 // import Logo from '~/components/primitives/logo/logo';
 // import { Instagram } from '../icons/instagram';
@@ -12,16 +17,37 @@ export const AlternativeFooter = () => {
     <div className={styles['footer-container']}>
       <div className={styles['footer-top']}>
         <div className={styles['footer-top-first']}>
-          <div className={styles['logo']}>Logo</div>
+          <div className={styles['logo']}>
+            <Image src="/logo.png" width="80" height="80" alt="logo" />
+          </div>
           <div className={styles['social']}>
-            <span>Instagram</span>
-            <span>Twitter</span>
-            <span>Facebook</span>
-            <span>Tiktok</span>
+            <span
+              style={{
+                color: 'white'
+              }}
+            >
+              <Instagram />
+            </span>
+            <span>
+              <Twitter />
+            </span>
+            <span>
+              <Facebook />
+            </span>
+            <span>
+              <Tiktok />
+            </span>
           </div>
         </div>
         <div className={styles['footer-top-second']}>
-          <div className={styles['footer-top-second-header']}>Company</div>
+          <div
+            style={{
+              color: 'white'
+            }}
+            className={styles['footer-top-second-header']}
+          >
+            Company
+          </div>
           <div className={styles['footer-top-second-content']}>
             <div>About</div>
             <div>FAQ</div>
@@ -42,7 +68,14 @@ export const AlternativeFooter = () => {
           </div>
         </div> */}
         <div className={styles['footer-top-four']}>
-          <div className={styles['footer-top-four-header']}>Contact</div>
+          <div
+            style={{
+              color: 'white'
+            }}
+            className={styles['footer-top-four-header']}
+          >
+            Contact
+          </div>
           <div className={styles['footer-top-four-content']}>
             contact@merchlife.com
             <div>+1 408-835-0739</div>
@@ -59,7 +92,7 @@ export const AlternativeFooter = () => {
             style={{
               padding: '16px 16px',
               display: 'grid',
-              backgroundColor: 'black',
+              backgroundColor: 'transparent',
               color: 'white',
               gridTemplateColumns: '1fr 72px',
               gap: '8px',

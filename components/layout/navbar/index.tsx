@@ -1,7 +1,7 @@
 import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
-import LogoSquare from 'components/logo-square';
 import { Menu } from 'lib/shopify/types';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import Search from './search';
@@ -25,7 +25,7 @@ export default async function Navbar() {
       <div className="flex w-full items-center">
         <div className="flex w-full md:w-1/3">
           <Link href="/" className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6">
-            <LogoSquare />
+            <Image src="/logo.png" width="40" height="40" alt="logo" />
             <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
               {SITE_NAME}
             </div>
