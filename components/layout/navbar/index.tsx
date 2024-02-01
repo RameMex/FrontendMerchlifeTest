@@ -17,6 +17,10 @@ export default async function Navbar() {
     {
       title: 'Categories',
       path: '/categories'
+    },
+    {
+      title: 'How it works',
+      path: '/how-it-works'
     }
   ];
   return (
