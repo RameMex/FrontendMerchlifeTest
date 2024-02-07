@@ -77,18 +77,47 @@ export async function ThreeItemGrid() {
           currencyCode: 'USD'
         }
       }
+    },
+    {
+      featuredImage: {
+        url: '/back_black.png'
+      },
+      title: 'Product 1',
+      priceRange: {
+        maxVariantPrice: {
+          amount: '20',
+          currencyCode: 'USD'
+        }
+      }
+    },
+    {
+      featuredImage: {
+        url: '/pocket_black.png'
+      },
+      title: 'Product 1',
+      priceRange: {
+        maxVariantPrice: {
+          amount: '20',
+          currencyCode: 'USD'
+        }
+      }
     }
   ];
 
   if (!homepageItems[0] || !homepageItems[1] || !homepageItems[2]) return null;
 
-  const [firstProduct, secondProduct, thirdProduct] = homepageItems;
+  const [firstProduct, secondProduct, thirdProduct, fourthProduct, fifthProduct] = homepageItems;
 
   return (
-    <section className="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2">
-      <ThreeItemGridItem size="full" item={firstProduct} priority={true} />
-      <ThreeItemGridItem size="half" item={secondProduct} priority={true} />
-      <ThreeItemGridItem size="half" item={thirdProduct} />
+    <section>
+      <div className="mt-8 p-4 text-4xl font-extrabold text-white"> Stores at Merchlife</div>
+      <div className="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 pt-4 md:grid-cols-8 md:grid-rows-2">
+        <ThreeItemGridItem size="full" item={firstProduct} priority={true} />
+        <ThreeItemGridItem size="half" item={secondProduct} priority={true} />
+        <ThreeItemGridItem size="half" item={thirdProduct} />
+        <ThreeItemGridItem size="half" item={fourthProduct} />
+        <ThreeItemGridItem size="half" item={fifthProduct} />
+      </div>
     </section>
   );
 }
