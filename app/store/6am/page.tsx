@@ -5,7 +5,7 @@ import Link from 'next/link';
 const inter = Inter({ subsets: ['latin'] });
 const interProducts = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
-export default function Creators() {
+export default function Store() {
   return (
     <main
       style={{

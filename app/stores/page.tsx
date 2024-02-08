@@ -1,7 +1,7 @@
 'use client';
 import { CartStore } from 'components/cartstore/cart-store';
 
-export default function Creators() {
+export default function Stores() {
   return (
     <div
       style={{
