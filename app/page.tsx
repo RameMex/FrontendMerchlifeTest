@@ -21,7 +21,7 @@ export default async function HomePage() {
         }}
       >
         <div className="relative overflow-hidden bg-cover bg-no-repeat">
-          <img src="/bg.png" alt="" />
+          <img src="/01.png" alt="" />
         </div>
       </div>
       <ThreeItemGrid />
