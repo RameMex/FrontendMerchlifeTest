@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import Search from './search';
+import { UserAvatar } from './user-avatar';
 const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
@@ -53,6 +54,7 @@ export default async function Navbar() {
           <Search />
         </div>
         <div className="flex justify-end md:w-1/3">
+          <UserAvatar />
           <Suspense fallback={<OpenCart />}>
             <Cart />
           </Suspense>
