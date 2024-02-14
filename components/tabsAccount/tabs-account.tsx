@@ -1,19 +1,38 @@
 'use client';
-import { Card, CardBody, Tab, Tabs } from '@nextui-org/react';
+import { Button, Card, CardBody, Input, Tab, Tabs } from '@nextui-org/react';
 
 export const TabsAccount = () => {
   const tabs = [
     {
       id: 'account',
       label: 'Account',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      content: (
+        <>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '16px'
+            }}
+          >
+            <Input type="email" label="First Name" placeholder="Enter your first name" />
+            <Input type="email" label="Last Name" placeholder="Enter your last name" />
+            <Input type="email" label="Email" placeholder="Enter your email" />
+            <Input type="email" label="Phone Number" placeholder="Enter your phone number" />
+            <Button color="secondary" variant="ghost">
+              Cancel
+            </Button>
+            <Button color="primary" variant="solid">
+              Save
+            </Button>
+          </div>
+        </>
+      )
     },
     {
       id: 'orders',
       label: 'Orders',
-      content:
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+      content: 'There are no orders.'
     }
   ];
 
@@ -26,7 +45,7 @@ export const TabsAccount = () => {
         backgroundColor: '#171717'
       }}
     >
-      <Card className="max-w-[400px]">
+      <Card className="max-w-[800px]">
         <CardBody>
           <Tabs aria-label="Dynamic tabs" items={tabs}>
             {(item) => (

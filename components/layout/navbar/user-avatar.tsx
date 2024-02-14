@@ -1,5 +1,6 @@
 'use client';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, User } from '@nextui-org/react';
+import Link from 'next/link';
 
 export const UserAvatar = () => {
   return (
@@ -17,12 +18,20 @@ export const UserAvatar = () => {
             name="Tony Reichert"
           />
         </DropdownTrigger>
-        <DropdownMenu className="dark" aria-label="User Actions" variant="flat">
+        <DropdownMenu
+          style={{
+            color: 'black'
+          }}
+          aria-label="User Actions"
+          variant="flat"
+        >
           <DropdownItem key="profile" className="h-14 gap-2">
             <p className="font-bold">Signed in as</p>
             <p className="font-bold">@tonyreichert</p>
           </DropdownItem>
-          <DropdownItem key="settings">My Account</DropdownItem>
+          <DropdownItem key="settings">
+            <Link href="/my-account">My Account</Link>
+          </DropdownItem>
           <DropdownItem key="team_settings">Orders</DropdownItem>
           <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
           <DropdownItem key="logout" color="danger">
