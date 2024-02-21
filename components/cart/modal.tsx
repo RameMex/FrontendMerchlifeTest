@@ -4,7 +4,6 @@ import { Dialog, Transition } from '@headlessui/react';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import Price from 'components/price';
 import { DEFAULT_OPTION } from 'lib/constants';
-import type { Cart } from 'lib/shopify/types';
 import { createUrl } from 'lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,7 +17,86 @@ type MerchandiseSearchParams = {
   [key: string]: string;
 };
 
-export default function CartModal({ cart }: { cart: Cart | undefined }) {
+export default function CartModal() {
+  const cart: any = {
+    lines: [
+      {
+        id: '1',
+        quantity: 2,
+        cost: {
+          totalAmount: {
+            amount: '100',
+            currencyCode: 'USD'
+          }
+        },
+        merchandise: {
+          id: '2',
+          title: 'Probando',
+          selectedOptions: [
+            {
+              name: 'ok',
+              value: 'ok'
+            }
+          ],
+          product: {
+            title: '6am',
+            handle: '6am',
+            id: '1',
+            options: [
+              {
+                id: '24242',
+                name: 'color',
+                values: ['black']
+              }
+            ],
+            variants: [
+              {
+                id: '122',
+                title: 'prueba',
+                availableForSale: true,
+                selectedOptions: [
+                  {
+                    name: 'ok',
+                    value: 'ok'
+                  }
+                ],
+                price: {
+                  amount: '20',
+                  currencyCode: 'USD'
+                }
+              }
+            ],
+            images: [
+              {
+                url: 'https://www.merchlife.co/product_two.jpg',
+                altText: 'ok',
+                width: 100,
+                height: 100
+              }
+            ],
+            description: 'ok',
+            availableForSale: true,
+            priceRange: {
+              minVariantPrice: {
+                amount: '20',
+                currencyCode: 'USD'
+              },
+              maxVariantPrice: {
+                amount: '25',
+                currencyCode: 'USD'
+              }
+            },
+            featuredImage: {
+              url: 'https://www.merchlife.co/product_two.jpg',
+              height: 200,
+              width: 100,
+              altText: 'ook'
+            }
+          }
+        }
+      }
+    ]
+  };
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);
   const openCart = () => setIsOpen(true);
@@ -64,7 +142,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            <Dialog.Panel className="fixed bottom-0 right-0 top-0 flex h-full w-full flex-col border-l border-neutral-200 bg-white/80 p-6 text-black backdrop-blur-xl dark:border-neutral-700 dark:bg-black/80 dark:text-white md:w-[390px]">
+            <Dialog.Panel className="fixed bottom-0 right-0 top-0 flex h-full w-full flex-col border-l border-neutral-200 bg-white/80 p-6 text-black backdrop-blur-xl md:w-[390px] dark:border-neutral-700 dark:bg-black/80 dark:text-white">
               <div className="flex items-center justify-between">
                 <p className="text-lg font-semibold">My Cart</p>
 
@@ -81,14 +159,16 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
               ) : (
                 <div className="flex h-full flex-col justify-between overflow-hidden p-1">
                   <ul className="flex-grow overflow-auto py-4">
-                    {cart.lines.map((item, i) => {
+                    {cart.lines.map((item: any, i: any) => {
                       const merchandiseSearchParams = {} as MerchandiseSearchParams;
 
-                      item.merchandise.selectedOptions.forEach(({ name, value }) => {
-                        if (value !== DEFAULT_OPTION) {
-                          merchandiseSearchParams[name.toLowerCase()] = value;
+                      item.merchandise.selectedOptions.forEach(
+                        ({ name, value }: { name: any; value: any }) => {
+                          if (value !== DEFAULT_OPTION) {
+                            merchandiseSearchParams[name.toLowerCase()] = value;
+                          }
                         }
-                      });
+                      );
 
                       const merchandiseUrl = createUrl(
                         `/product/${item.merchandise.product.handle}`,
@@ -157,8 +237,8 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                       <p>Taxes</p>
                       <Price
                         className="text-right text-base text-black dark:text-white"
-                        amount={cart.cost.totalTaxAmount.amount}
-                        currencyCode={cart.cost.totalTaxAmount.currencyCode}
+                        amount={'100'}
+                        currencyCode={'USD'}
                       />
                     </div>
                     <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
@@ -169,8 +249,8 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                       <p>Total</p>
                       <Price
                         className="text-right text-base text-black dark:text-white"
-                        amount={cart.cost.totalAmount.amount}
-                        currencyCode={cart.cost.totalAmount.currencyCode}
+                        amount={'100'}
+                        currencyCode={'USD'}
                       />
                     </div>
                   </div>
